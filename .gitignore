@@ -2,3 +2,6 @@
 __pycache__
 .vscode
 result.txt
+cpp/*.out
+cpp/solve
+*.txt
