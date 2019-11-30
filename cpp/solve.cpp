@@ -122,7 +122,7 @@ public:
         candidates = (size_t*)calloc(n,sizeof(size_t));
         int num = 0;
         for (size_t c = 0; c < n; c++) {
-            state[c] = random_int(0,c);
+            state[c] = random_int(0,n-1);
         }
         conflicts = (int*) calloc(n, sizeof(int));
         for (size_t val = 0; val < n; val++) {
@@ -134,20 +134,21 @@ public:
         int moves = 0;
         int prev_num_conflicts = -1;
         int itt = 0;
-        for(int i = 0; i < max; i++){
+        while(true){
+	//for(int i = 0; i < max; i++){
             int num_conflicts = totalConflicts;
+            if(num_conflicts == 0){
+                return moves;
+            }
             int max = *max_element(conflicts, conflicts + n);
             vector<int> maxs;
             for(int i = 0; i < n; i++){
                 if(conflicts[i] == max) maxs.push_back(i);
             }
-            if(num_conflicts == 0){
-                return moves;
-            }
             size_t q = random_element(maxs);
             moveQueen(q);
             if(num_conflicts != prev_num_conflicts){
-                cout << "|" << num_conflicts << " " << itt << " "  << n << " " <<  q << endl;
+                //cout << "|" << num_conflicts << " " << itt << " "  << n << " " <<  q << endl;
                 //for (int i = 0; i < n; i++) printf ("%d ",conflicts[i]);
                 itt = 0;
             }
@@ -165,6 +166,7 @@ public:
         return true;
     }
     void printBoard(){
+    	for (int i = 0; i < n; i++) printf ("%d ",state[i]);
     }
     ~Queens() {
         free(state);
@@ -179,14 +181,15 @@ int main(int a, char** argv)
     int n = atoi(argv[1]);
     int max = atoi(argv[2]);
     cout << "n=" << n << ",max=" << max << endl;
-    //for(int i = 100; i < n; i += 100){
+    for(int i = 100; i < n; i += 100){
         using clock = std::chrono::steady_clock;
         clock::time_point start = clock::now();
-        Queens *q = new Queens(n);
+        Queens *q = new Queens(i);
         q->solveBoard(max);
         clock::time_point end = clock::now();
         std::chrono::duration<double> execution_time =(end - start);
         cout << n << "," << execution_time.count() << "," << q->checkBoard() << endl; 
-        delete q;
-   // }
+        //q->printBoard();
+	delete q;
+    }
 }

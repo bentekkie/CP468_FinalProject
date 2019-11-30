@@ -5,3 +5,4 @@ result.txt
 cpp/*.out
 cpp/solve
 *.txt
+!results.1000000.txt
