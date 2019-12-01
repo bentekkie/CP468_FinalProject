@@ -31,7 +31,7 @@ class Queens
 private:
 
     const int n; // The number of queens
-    size_t *candidates; // Used to store candidate rows at various points in the algoritm;
+    size_t *candidates; // Used to store candidate rows at various points in the algorithm;
     int totalConflicts = 0; // Stores the sum of all values in conflicts
     int* state; // state[i]=j represents a queen at column i and row j 
     int* conflicts; // conflicts[i] stores the number of conflicts that the queen in column i has at it current row stored in state[i]
