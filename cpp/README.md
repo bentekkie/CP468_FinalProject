@@ -2,7 +2,7 @@
 Complile program using `g++ solve.cpp`
 
 ## Running
-Run the program using `a.out <n> <option>`
+Run the program using `./a.out <n> <option>`
 ### n: the number of queens
 ### option: an integer for different options of output
 0. Solve n-queens problem for n queens, output will be `n,<execution time(sec)>,<did it solve the board(bool)>` 
