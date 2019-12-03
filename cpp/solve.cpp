@@ -31,13 +31,17 @@ class Queens
 private:
 
     const int n; // The number of queens
-    size_t *candidates; // Used to store candidate rows at various points in the algorithm;
+    size_t *candidates; // Used to store candidate rows at various points in the algoritm;
     int totalConflicts = 0; // Stores the sum of all values in conflicts
     int* state; // state[i]=j represents a queen at column i and row j 
     int* conflicts; // conflicts[i] stores the number of conflicts that the queen in column i has at it current row stored in state[i]
     int* allConflicts; // Used to store the results from the checkAllConflicts method
     
     
+    constexpr bool isConflicted(int rowA, int colA, int rowB, int colB){
+        return rowA == rowB || abs(rowA - rowB) == abs(colA - colB);
+    }
+
     // Calculate the conflicts for the given queen
     int checkConflicts(int queen) {
         return checkConflicts(state[queen],queen);

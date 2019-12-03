@@ -1,5 +1,6 @@
 ## Compiling
 Complile program using `g++ solve.cpp`
+For better and **much** faster code compile using `g++ solve.better.cpp -O3 -std=c++17`
 
 ## Running
 Run the program using `./a.out <n> <option>`
